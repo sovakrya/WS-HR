@@ -7,20 +7,26 @@ import {
   Button,
 } from '@strapi/design-system';
 import { useEffect, useState } from 'react';
-import { DataSpeciality, getSpecialities } from '../api/plugin';
+import { Speciality, getSpecialities } from '../api/plugin';
 
 const HomePage = () => {
-  const [specialities, setSpecialities] = useState<DataSpeciality>();
+  const [specialities, setSpecialities] = useState<Speciality[]>([]);
 
   function getSpecialitiesFromFetch() {
     getSpecialities().then((res) => {
-      setSpecialities(res);
+      res.data.map((speciality) => {
+        if (speciality.activity && speciality.task) {
+          console.log(speciality)
+        return setSpecialities((specialities) => [...specialities, speciality]);
+        }
+      });
     });
   }
   useEffect(() => {
     getSpecialitiesFromFetch();
   }, []);
 
+console.log(specialities)
   return (
     <Main
       style={{
@@ -37,7 +43,7 @@ const HomePage = () => {
         Выбор задания
       </Typography>
 
-      {!specialities ? (
+      {!specialities.length ? (
         <Typography style={{ fontWeight: 400, fontSize: 14, color: '#32324D' }}>
           Для выбора задания необходимо добавить хотя бы одну активную специальность и хотя бы одно
           активное задания для нее.
@@ -47,12 +53,12 @@ const HomePage = () => {
           <Box style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <Typography>Специальность</Typography>
             <SingleSelect placeholder="Выберите специальность" style={{ width: 640, height: 43 }}>
-              {specialities.data.map((speciality) => {
-                if(!speciality.activity && speciality.task){
-                  return
-                }else {
-                  return <SingleSelectOption value={speciality.id} key={speciality.id}>{speciality.name}</SingleSelectOption>
-                }
+              {specialities.map((spesiality) => {
+                return (
+                  <SingleSelectOption key={spesiality.id} value={spesiality.documentId}>
+                    {spesiality.name}
+                  </SingleSelectOption>
+                );
               })}
             </SingleSelect>
           </Box>

@@ -1,4 +1,4 @@
-type Speciality = {
+export type Speciality = {
   id: number;
   name: string;
   activity: boolean;
@@ -6,7 +6,7 @@ type Speciality = {
   task: string
 };
 
-export type DataSpeciality = {
+ type DataSpeciality = {
   data: Speciality[];
   meta: {
     pagination: {
