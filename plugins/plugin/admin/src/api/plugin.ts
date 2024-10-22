@@ -3,7 +3,9 @@ export type Speciality = {
   name: string;
   activity: boolean;
   documentId: string;
-  task: string
+  task: {
+    count: number
+  }
 };
 
  type DataSpeciality = {
