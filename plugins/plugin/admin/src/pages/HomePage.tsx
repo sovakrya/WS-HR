@@ -13,24 +13,23 @@ const HomePage = () => {
   const [specialities, setSpecialities] = useState<Speciality[]>([]);
 
   function getSpecialitiesFromFetch() {
-    let correctedSpecialities: Speciality[] = [];
+    const correctedSpecialities: Speciality[] = [];
     getSpecialities().then((res) => {
-      console.log(res)
-      correctedSpecialities = res.data.filter((speciality) => {
-        if (speciality.task.count && speciality.activity) {
-          console.log(speciality)
-          return speciality;
+      for (let spesiality of res.data) {
+        for (let task of spesiality.tasks) {
+          if (spesiality.activity && task.activity) {
+            correctedSpecialities.push(spesiality);
+          }
         }
-      });
-      setSpecialities(correctedSpecialities);
-      console.log(correctedSpecialities)
+      }
+
+      setSpecialities(correctedSpecialities)
     });
   }
   useEffect(() => {
     getSpecialitiesFromFetch();
   }, []);
 
-  console.log(specialities)
 
   return (
     <Main

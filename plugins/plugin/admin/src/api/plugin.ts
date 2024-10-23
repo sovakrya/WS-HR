@@ -3,10 +3,16 @@ export type Speciality = {
   name: string;
   activity: boolean;
   documentId: string;
-  task: {
-    count: number
-  }
+  tasks: Task[]
 };
+
+type Task = {
+  id: number,
+  documentId: string,
+  activity: boolean,
+  name: string,
+  taskText: string
+}
 
  type DataSpeciality = {
   data: Speciality[];
@@ -21,7 +27,7 @@ export type Speciality = {
 };
 
 export async function getSpecialities(): Promise<DataSpeciality> {
-  const resp = await fetch('http://localhost:1337/api/specialities');
+  const resp = await fetch('http://localhost:1337/api/specialities?populate=*');
 
   return resp.json();
 }
