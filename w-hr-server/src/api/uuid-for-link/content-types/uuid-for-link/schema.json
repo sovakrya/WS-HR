@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "uuid_for_links",
+  "info": {
+    "singularName": "uuid-for-link",
+    "pluralName": "uuid-for-links",
+    "displayName": "UUIDForLink",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "UUID": {
+      "type": "uid",
+      "required": false
+    },
+    "task": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::task.task",
+      "inversedBy": "uuid_for_links"
+    },
+    "validity": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "test_pages",
+  "info": {
+    "singularName": "test-page",
+    "pluralName": "test-pages",
+    "displayName": "TestPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Тестовое задание"
+    },
+    "comment": {
+      "type": "richtext"
+    },
+    "VideoInstructions": {
+      "type": "string"
+    }
+  }
+}
