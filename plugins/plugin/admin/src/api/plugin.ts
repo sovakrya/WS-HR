@@ -3,18 +3,18 @@ export type Speciality = {
   name: string;
   activity: boolean;
   documentId: string;
-  tasks: Task[]
+  tasks: Task[];
 };
 
 type Task = {
-  id: number,
-  documentId: string,
-  activity: boolean,
-  name: string,
-  taskText: string
-}
+  id: number;
+  documentId: string;
+  activity: boolean;
+  name: string;
+  taskText: string;
+};
 
- type DataSpeciality = {
+type DataSpeciality = {
   data: Speciality[];
   meta: {
     pagination: {
@@ -31,4 +31,3 @@ export async function getSpecialities(): Promise<DataSpeciality> {
 
   return resp.json();
 }
-
